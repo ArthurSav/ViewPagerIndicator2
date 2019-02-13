@@ -44,14 +44,14 @@ import static android.widget.LinearLayout.VERTICAL;
  */
 public class CirclePageIndicator extends View implements PageIndicator {
 
-    private final boolean mIsInEditMode;
+    protected final boolean mIsInEditMode;
 
     private float mRadius;
     private float mGapWidth;
     private final Paint mPaintPageFill = new Paint(ANTI_ALIAS_FLAG);
     private final Paint mPaintStroke = new Paint(ANTI_ALIAS_FLAG);
     private final Paint mPaintFill = new Paint(ANTI_ALIAS_FLAG);
-    private ViewPager mViewPager;
+    protected ViewPager mViewPager;
     private ViewPager.OnPageChangeListener mListener;
     private int mCurrentPage;
     private int mSnapPage;
@@ -415,7 +415,7 @@ public class CirclePageIndicator extends View implements PageIndicator {
         invalidate();
     }
 
-    private int getCount() {
+    protected int getCount() {
         if (mIsInEditMode) {
             return EDIT_MODE_COUNT;
         } else if (mViewPager != null) {
