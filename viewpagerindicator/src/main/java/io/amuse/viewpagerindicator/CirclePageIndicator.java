@@ -45,6 +45,7 @@ import static android.widget.LinearLayout.VERTICAL;
 public class CirclePageIndicator extends View implements PageIndicator {
 
     protected final boolean mIsInEditMode;
+    private int limit;
 
     private float mRadius;
     private float mGapWidth;
@@ -126,6 +127,9 @@ public class CirclePageIndicator extends View implements PageIndicator {
         }
     }
 
+    public void setLimit(int limit) {
+        this.limit = limit;
+    }
 
     public void setCentered(boolean centered) {
         mCentered = centered;
@@ -220,9 +224,13 @@ public class CirclePageIndicator extends View implements PageIndicator {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        final int count = getCount();
+        int count = getCount();
         if (count == 0) {
             return;
+        }
+
+        if (limit > 0 && getCount() > limit) {
+            count = limit;
         }
 
         if (mCurrentPage >= count) {
